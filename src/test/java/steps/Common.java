@@ -18,12 +18,22 @@ public class Common {
         this.driver = driver;
     }
     
-    public void theUserIsOnTheHomepage(String link_inici) {
-        System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.get(link_inici);
+    public void inici(String link_inici) {
+    	System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
+		driver.navigate().to("https://www.decathlon.es/es/");
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+		try {
+	        WebElement rejectButton = wait.until(
+	            ExpectedConditions.elementToBeClickable(By.id("didomi-notice-agree-button"))
+	        );
+	        rejectButton.click(); 
+	    } catch (Exception e) {
+	        System.out.println("No se ha encontrado el popup de cookies: " + e.getMessage());
+	    }
     }
 
     public void cercar_text_id(String id, String terme)
@@ -34,5 +44,15 @@ public class Common {
     public void cercar_text_classe(String classe, String terme)
     {
     	driver.findElement(By.className(classe)).sendKeys(terme);
+    }
+    
+    public void cercar_text_nom(String nom, String terme)
+    {
+    	driver.findElement(By.name(nom)).sendKeys(terme);
+    }
+    
+    public void element_aria_label(String text)
+    {
+    	driver.findElement(By.xpath("//button[@aria-label='"+ text +"']")).click();
     }
 }
