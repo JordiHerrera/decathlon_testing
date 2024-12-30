@@ -32,9 +32,9 @@ public class LoginSteps{
         accountLink.click();
     }
 
-    @When("enters email")
-    public void enterEmail() {
-        new Common(driver).cercar_text_id("input-email", "tqs_uab_testing@yopmail.com");
+    @When("enters email {string}")
+    public void enterEmail(String email) {
+        new Common(driver).cercar_text_id("input-email", email);
         driver.findElement(By.id("lookup-btn")).click();
     }
     
@@ -45,16 +45,16 @@ public class LoginSteps{
     	passwordField.sendKeys("TQS_test_1");
     }
     
-    @When("clicks login")
+    @When("clicks forgot password")
     public void buttonlogin() {
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("signin-button")));
-        loginButton.click();
+    	WebElement forgotPasswordLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='¿Has olvidado la contraseña?']")));
+    	forgotPasswordLink.click();
     }
 
-    @Then("user dashboard appears")
-    public void userDashboard() {
-        String title = driver.findElement(By.className("features_items")).getText();
-        assertTrue(title.contains("SEARCHED PRODUCTS"));
+    @Then("forgotten password page appears with email {string}")
+    public void userDashboard(String email) {
+        String title = driver.findElement(By.className("account-editor-contact")).getText();
+        assertTrue(title.contains(email));
     }
 }
