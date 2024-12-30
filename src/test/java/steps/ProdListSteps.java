@@ -11,38 +11,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import common.WebDriverCommon;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 
 public class ProdListSteps {
 	
-	WebDriver driver;
+	WebDriver driver = WebDriverCommon.getDriver();
 	
-	@Given("the user is in the index page")
-	public void theUserIsInTheIndexPage()
-	{
-		
-		System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
-		driver.navigate().to("https://www.decathlon.es/es/");
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
-		try {
-	        WebElement rejectButton = wait.until(
-	            ExpectedConditions.elementToBeClickable(By.id("didomi-notice-agree-button"))
-	        );
-	        rejectButton.click(); 
-	    } catch (Exception e) {
-	        System.out.println("No se ha encontrado el popup de cookies: " + e.getMessage());
-	    }
-	}
 		
 	@When("the user enters {string} in the search bar")
 	public void theUserEntersTextInTheSearchBar(String nom)
 	{
+		//WebDriver driver = WebDriverCommon.getDriver();
 		new Common(driver).cercar_text_nom("Ntt", nom);
 	}
 	

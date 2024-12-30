@@ -16,52 +16,40 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import common.WebDriverCommon;
+
 public class LoginSteps{
 	
-	WebDriver driver;
-
-    @Given("the user is in the starting page")
-    public void theUserIsInTheStartingPage() {
-    	System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
-		driver.navigate().to("https://www.decathlon.es/es/");
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
-		try {
-	        WebElement rejectButton = wait.until(
-	            ExpectedConditions.elementToBeClickable(By.id("didomi-notice-agree-button"))
-	        );
-	        rejectButton.click(); 
-	    } catch (Exception e) {
-	        System.out.println("No se ha encontrado el popup de cookies: " + e.getMessage());
-	    }
-	}
+	public WebDriver driver = WebDriverCommon.getDriver(); 
     
-
+    
     @When("clicks login button")
     public void clicksLoginButton() {
+    	WebDriver driver = WebDriverCommon.getDriver();
     	WebElement accountLink = driver.findElement(By.xpath("//a[contains(@class, 'tool-link') and @aria-label='Mi cuenta']"));
-
+    
         // Click the element
         accountLink.click();
     }
 
     @When("enters email")
     public void enterEmail() {
-        new Common(driver).cercar_text_id("input-email", "aqui_email");
+        new Common(driver).cercar_text_id("input-email", "tqs_uab_testing@yopmail.com");
         driver.findElement(By.id("lookup-btn")).click();
     }
-
+    
     @When("enters password")
     public void enterPassword() {
-        new Common(driver).cercar_text_id("input-password", "aqui_contrasenya");
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    	WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.id("input-password")));
+    	passwordField.sendKeys("TQS_test_1");
     }
-
+    
     @When("clicks login")
     public void buttonlogin() {
-        driver.findElement(By.id("signin-button")).click();
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("signin-button")));
+        loginButton.click();
     }
 
     @Then("user dashboard appears")
