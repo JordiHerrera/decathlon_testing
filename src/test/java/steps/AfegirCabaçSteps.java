@@ -36,14 +36,7 @@ public class AfegirCabaçSteps {
         productContainer.click();
 	}
 	
-	@When("the user adds the product to the cart")
-	public void addproduct()
-	{
-		WebElement addToCartButton = driver.findElement(By.cssSelector("button.vtmn-btn.vtmn-btn_variant--conversion.vtmn-btn_size--stretched.conversion-zone__purchase-cta")); 
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", addToCartButton);
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
-	}
+	
 
 	@Then("the product has to be on the cart")
 	public void verifyProductInCart() {
