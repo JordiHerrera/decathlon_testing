@@ -69,4 +69,31 @@ public class Common {
     {
     	driver.findElement(By.xpath("//button[@aria-label='"+ text +"']")).click();
     }
+    
+    @When("the user enters {string} in the search bar")
+	public void theUserEntersTextInTheSearchBar(String nom)
+	{
+		//WebDriver driver = WebDriverCommon.getDriver();
+		new Common(driver).cercar_text_nom("Ntt", nom);
+	}
+	
+	@When("the user clicks the search button")
+	public void theClicksTheSearchButton()
+	{
+		driver.findElement(By.xpath("//button[@aria-label='Busca producto, deporte...']")).click();
+
+	}
+	
+	@When("the user goes to product {int} page")
+	public void theUserEntersTextInTheSearchBar(int prod_option)
+	{
+		if(prod_option == 1)
+		{
+			driver.get("https://www.decathlon.es/es/p/raqueta-de-tenis-nino-essential-23/_/R-p-349074?mc=8820359");
+		}
+		else
+		{
+			driver.get("https://www.decathlon.es/es/p/raqueta-de-tenis-ninos-artengo-tr130-25/_/R-p-309594?mc=8540261");
+		}
+	}
 }

@@ -20,20 +20,7 @@ public class ProdListSteps {
 	
 	WebDriver driver = WebDriverCommon.getDriver();
 	
-		
-	@When("the user enters {string} in the search bar")
-	public void theUserEntersTextInTheSearchBar(String nom)
-	{
-		//WebDriver driver = WebDriverCommon.getDriver();
-		new Common(driver).cercar_text_nom("Ntt", nom);
-	}
-	
-	@When("the user clicks the search button")
-	public void theClicksTheSearchButton()
-	{
-		driver.findElement(By.xpath("//button[@aria-label='Busca producto, deporte...']")).click();
-
-	}
+			
 	
 	@Then("the {string} product line appears")
 	public void productLineAppears(String nom)

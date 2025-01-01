@@ -22,18 +22,7 @@ public class SumaCabacSteps {
 	WebDriver driver = WebDriverCommon.getDriver();
 	
 		
-	@When("the user goes to product {int} page")
-	public void theUserEntersTextInTheSearchBar(int prod_option)
-	{
-		if(prod_option == 1)
-		{
-			driver.get("https://www.decathlon.es/es/p/raqueta-de-tenis-nino-essential-23/_/R-p-349074?mc=8820359");
-		}
-		else
-		{
-			driver.get("https://www.decathlon.es/es/p/raqueta-de-tenis-ninos-artengo-tr130-25/_/R-p-309594?mc=8540261");
-		}
-	}
+	
 	
 	@When("the user goes to the cart page")
 	public void cartPageAmbLinkDirecte()
