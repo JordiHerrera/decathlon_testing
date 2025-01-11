@@ -21,20 +21,7 @@ public class HomePageSteps {
 	
 	WebDriver driver = WebDriverCommon.getDriver();
 	
-		
-	@When("the user clicks on a product of the home page")
-	public void selectProductHome()
-	{
-		
-        // Esperem a que carregui
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        // Buscar l'espai on esta el producte
-        WebElement productContainer = driver.findElement(By.cssSelector("div[data-supermodelid='7e86608f-5d01-4c02-9552-d958d430c70a']"));
-        // Fer scroll cap el producte per assegurar-nos que es visible
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", productContainer);
-        wait.until(ExpectedConditions.elementToBeClickable(productContainer));
-        productContainer.click();
-	}
+
 	
 	@Then("the product is shown on screen")
 	public void productUrl()

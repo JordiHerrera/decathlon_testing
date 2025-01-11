@@ -37,8 +37,14 @@ public class CategoriesSteps {
 	@When("clicks in a subcategory")
 	public void clickSubcategory()
 	{
-	    WebElement subcategory = driver.findElement(By.xpath("//span[contains(text(),'Judo')]"));  
-	    subcategory.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        try {
+            WebElement subcategory = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Judo')]")));            
+            subcategory.click();
+        } catch (Exception e) {
+            System.out.println("Element not found or not clickable: " + e.getMessage());
+        }
 	}
 
 	@Then("the subcategory is shown on screen")

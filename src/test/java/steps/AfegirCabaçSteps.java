@@ -22,19 +22,7 @@ public class AfegirCabaçSteps {
 	WebDriver driver = WebDriverCommon.getDriver();
 	
 		
-	@When("the user clicks on a product")
-	public void selectProduct()
-	{
-		
-        // Esperem a que carregui
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        // Buscar l'espai on esta el producte
-        WebElement productContainer = driver.findElement(By.cssSelector("div[data-supermodelid='d9eef34f-9d72-43ce-9b24-aa12c81d87c7']"));
-        // Fer scroll cap el producte per assegurar-nos que es visible
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", productContainer);
-        wait.until(ExpectedConditions.elementToBeClickable(productContainer));
-        productContainer.click();
-	}
+
 	
 	
 

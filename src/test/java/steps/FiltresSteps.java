@@ -28,19 +28,7 @@ public class FiltresSteps {
 	WebDriver driver = WebDriverCommon.getDriver();
 	
 		
-	@When("the user enters {string} in the search bar2")
-	public void theUserEntersTextInTheSearchBar2(String nom)
-	{
-		//WebDriver driver = WebDriverCommon.getDriver();
-		new Common(driver).cercar_text_nom("Ntt", nom);
-	}
-	
-	@When("the user clicks on the search button")
-	public void theClicksTheSearchButton2()
-	{
-		driver.findElement(By.xpath("//button[@aria-label='Busca producto, deporte...']")).click();
 
-	}
 
 	@When("the user selects the filter of ascending price")
 	public void filter() {

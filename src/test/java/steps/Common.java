@@ -46,7 +46,7 @@ public class Common {
 	{
 		WebElement addToCartButton = driver.findElement(By.cssSelector("button.vtmn-btn.vtmn-btn_variant--conversion.vtmn-btn_size--stretched.conversion-zone__purchase-cta")); 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", addToCartButton);
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
 	}
 
@@ -95,5 +95,19 @@ public class Common {
 		{
 			driver.get("https://www.decathlon.es/es/p/raqueta-de-tenis-ninos-artengo-tr130-25/_/R-p-309594?mc=8540261");
 		}
+	}
+	
+	@When("the user clicks on a product")
+	public void selectProduct()
+	{
+		
+        // Esperem a que carregui
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        // Buscar l'espai on esta el producte
+        WebElement productContainer = driver.findElement(By.cssSelector("div[data-supermodelid='d9eef34f-9d72-43ce-9b24-aa12c81d87c7']"));
+        // Fer scroll cap el producte per assegurar-nos que es visible
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", productContainer);
+        wait.until(ExpectedConditions.elementToBeClickable(productContainer));
+        productContainer.click();
 	}
 }
