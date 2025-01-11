@@ -2,7 +2,7 @@
 ### Test de les funcionalitats de la pàgina web de la botiga Decathlon amb Selenium
 
 **Autors:**
-* Marc Bardeli Gamez - 1367718
+* Marc Bardeli Gamez - 1637718
 * Jordi Herrera Valdivia - 1638117
 
 **Funcions testades:**
